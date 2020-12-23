@@ -1,15 +1,12 @@
 import {
   ProviderResult,
-  TreeItemCollapsibleState,
   Command,
   TreeItem,
   TreeDataProvider,
   Event,
 } from "vscode";
-import * as fs from "fs";
 import * as path from "path";
-import * as globby from "globby";
-import  client  from "./mock";
+import  client  from "../mock";
 
 export class Interview implements TreeDataProvider<Question> {
   onDidChangeTreeData?: Event<void | Question | null | undefined> | undefined;
@@ -69,6 +66,4 @@ export class Question extends TreeItem {
       "dependency.svg"
     ),
   };
-
-  contextValue = "dependency";
 }

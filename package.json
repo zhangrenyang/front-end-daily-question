@@ -15,27 +15,62 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "menus": {
+      "view/title": [
+        {
+          "command": "interview.refresh",
+          "when": "view == interview",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "interview.openAnswer",
+          "when": "view == interview",
+          "group": "inline"
+        }
+      ]
+    },
     "views": {
-      "front-end-interview": [
+      "interview": [
         {
           "id": "interview",
-          "name": "Interview"
+          "name": "前端每日面试题"
         }
       ]
     },
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "front-end-interview",
-          "title": "front-end-interview",
+          "id": "interview",
+          "title": "前端每日面试题",
           "icon": "media/interview.svg"
         }
       ]
     },
-    "commands": [],
+    "viewsWelcome": [
+      {
+        "view": "interview",
+        "contents": "hello world"
+      }
+    ],
+    "commands": [
+      {
+        "command": "interview.refresh",
+        "title": "Refresh",
+        "icon": {
+          "light": "media/light/refresh.svg",
+          "dark": "media/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "interview.openAnswer",
+        "title": "题解"
+      }
+    ],
     "configuration": [
       {
-        "title": "front-end-interview",
+        "title": "interview",
         "properties": {
           "interview.workspaceFolder": {
             "type": "string",
@@ -56,7 +91,6 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/ali-oss": "^6.0.5",
     "@types/fs-extra": "^9.0.1",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.0.0",
@@ -71,7 +105,6 @@
     "vscode-test": "^1.4.0"
   },
   "dependencies": {
-    "ali-oss": "^6.10.0",
     "fs-extra": "^9.0.1"
   }
 }
