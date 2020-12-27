@@ -26,6 +26,8 @@ GET /api/questions
 |:----|:----|:----|
 |id|整数|每日一题ID|
 |name|字符串|题目名称|
+|type|字符串|题目类型，目前有两种,md和js|
+|content|字符串|题目内容|
 |publish_date|日期|发布时间|
 
 示例
@@ -97,6 +99,7 @@ GET /api/answers/:day_id
 |success|布尔值|是否成功|
 |subject_name|字段串|题目|
 |subject_content|字符串|题目内容|
+|subject_type|字符串|题目类型，目前有两种,md和js|
 |refer_answer|字符串|参考答案|
 |data|回答对象数组|全部回答|
 
