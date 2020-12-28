@@ -6,7 +6,7 @@ import {
   Event,
 } from "vscode";
 import * as path from "path";
-import  client  from "../mock";
+import { getProblemList } from "../service";
 
 export class Interview implements TreeDataProvider<Question> {
   onDidChangeTreeData?: Event<void | Question | null | undefined> | undefined;
@@ -19,18 +19,15 @@ export class Interview implements TreeDataProvider<Question> {
   }
   async getQuestions() {
     try {
-      let result = client.list();
-      let arr = result.objects.map(
-        (ele: any, index: number) =>
+      let result = await getProblemList();
+      let arr = result.data.map(
+        (ele, index) =>
           new Question(ele.name, {
             command: "interview.openQuestion",
             title: "",
-            arguments: [ele.name, index],
+            arguments: [ele],
           })
       );
-      arr.sort((a: Question, b: Question): number => {
-        return Number(a.label.split(".")[0]) - Number(b.label.split(".")[0]);
-      });
       return arr;
     } catch (e) {
       console.log(e);
