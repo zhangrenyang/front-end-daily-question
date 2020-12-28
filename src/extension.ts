@@ -11,8 +11,8 @@ export async function activate(
     window.createTreeView("interview", {
       treeDataProvider: interviewProvider,
     });
-    commands.registerCommand("interview.openQuestion", (name, index) => {
-      openQuestion(name, index);
+    commands.registerCommand("interview.openQuestion", (ele) => {
+      openQuestion(ele);
     });
     commands.registerCommand("interview.refresh", (name, index) => {
       vscode.window.showInformationMessage("刷新数据");
