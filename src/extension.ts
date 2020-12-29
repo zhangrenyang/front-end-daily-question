@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { commands, window } from "vscode";
+import { codeLensController } from "./codelens/codelenController";
 import { openQuestion } from "./command/openQuestion";
 import { Interview } from "./treeview/interviewTreeView";
 export async function activate(
@@ -23,6 +24,9 @@ export async function activate(
     commands.registerCommand("interview.postAnswer", (name, index) => {
       vscode.window.showInformationMessage("提交答案");
     });
+    context.subscriptions.push(
+      codeLensController
+    );
     // -------- interview 相关 -------------
   } catch (error) {
     window.showInformationMessage(error);
