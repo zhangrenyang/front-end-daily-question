@@ -78,6 +78,26 @@
             "description": "The path of the workspace folder to store the problem files.",
             "default": ""
           }
+        },
+        "interview.editor.shortcuts": {
+          "type": "array",
+          "default": [
+            "提交答案",
+            "查看题解"
+          ],
+          "scope": "application",
+          "items": {
+            "type": "string",
+            "enum": [
+              "提交答案",
+              "查看题解"
+            ],
+            "enumDescriptions": [
+              "Submit your answer.",
+              "Show other answers."
+            ]
+          },
+          "description": "Customize the shorcuts in editors."
         }
       }
     ]
