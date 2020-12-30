@@ -17,13 +17,6 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
     document: vscode.TextDocument
   ): vscode.ProviderResult<vscode.CodeLens[]> {
     const content: string = document.getText();
-    // const matchResult: RegExpMatchArray | null = content.match(
-    //   "*[interview]: start"
-    // );
-    // console.log(matchResult)
-    // if (!matchResult) {
-    //   return undefined;
-    // }
 
     let codeLensLine: number = document.lineCount - 1;
     for (let i: number = document.lineCount - 1; i >= 0; i--) {
@@ -32,6 +25,13 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
         codeLensLine = i;
         break;
       }
+    }
+
+    if (
+      content.indexOf("*[interview]: start") < 0 ||
+      content.indexOf("*[interview]: end") < 0
+    ) {
+      return [];
     }
 
     const range: vscode.Range = new vscode.Range(
@@ -46,7 +46,7 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
       new vscode.CodeLens(range, {
         title: "提交答案",
         command: "interview.postAnswer",
-        arguments: [document.uri],
+        arguments: [document],
       })
     );
 
@@ -54,7 +54,7 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
       new vscode.CodeLens(range, {
         title: "查看题解",
         command: "interview.openAnswer",
-        arguments: [document.uri],
+        arguments: [document],
       })
     );
     return codeLens;

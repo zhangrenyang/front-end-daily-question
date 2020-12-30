@@ -23,8 +23,8 @@ interface IListQuery {
 
 export interface ListItem {
     name: string,
-    id: number,
-    publish_date: Date | string,
+    day_id: number,
+    publish_date: string,
     content: string,
     type: 'md' | 'js'
 }

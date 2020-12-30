@@ -1,19 +1,18 @@
 import { resolve } from "path";
 import * as fse from "fs-extra";
-import client from "../mock";
 import { selectWorkspaceFolder } from "../shared/selectWorkspaceFolder";
 import { Uri, ViewColumn, window } from "vscode";
 import { ListItem } from "../service";
 
 export async function openQuestion(ele: ListItem): Promise<void> {
-  const { name, type, content } = ele;
+  const { name, type, content, day_id } = ele;
   const workspaceFolder: string = await selectWorkspaceFolder();
   if (!workspaceFolder) {
     return;
   }
   const codeTemplate = getCodeTemplate(type, content);
   const finalPath = await showProblem(
-    resolve(workspaceFolder, name + "." + type),
+    resolve(workspaceFolder, day_id + "." + name.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '') + "." + type),
     codeTemplate || ""
   );
   await window.showTextDocument(Uri.file(finalPath), {
