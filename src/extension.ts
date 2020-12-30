@@ -2,6 +2,8 @@ import * as vscode from "vscode";
 import { commands, window } from "vscode";
 import { codeLensController } from "./codelens/codelenController";
 import { openQuestion } from "./command/openQuestion";
+import { openAnswer } from "./command/openAnswer";
+import { postAnswer } from "./command/postAnswer";
 import { Interview } from "./treeview/interviewTreeView";
 export async function activate(
   context: vscode.ExtensionContext
@@ -19,15 +21,13 @@ export async function activate(
       interviewProvider.refresh();
       vscode.window.showInformationMessage("刷新");
     });
-    commands.registerCommand("interview.openAnswer", (name, index) => {
-      vscode.window.showInformationMessage("查看答案");
+    commands.registerCommand("interview.openAnswer", (doc) => {
+      openAnswer(doc);
     });
-    commands.registerCommand("interview.postAnswer", (name, index) => {
-      vscode.window.showInformationMessage("提交答案");
+    commands.registerCommand("interview.postAnswer", (doc, content) => {
+      postAnswer(doc, content);
     });
-    context.subscriptions.push(
-      codeLensController
-    );
+    context.subscriptions.push(codeLensController);
     // -------- interview 相关 -------------
   } catch (error) {
     window.showInformationMessage(error);

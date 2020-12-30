@@ -22,11 +22,11 @@ interface IListQuery {
 }
 
 export interface ListItem {
-    name: string,
-    day_id: number,
-    publish_date: string,
-    content: string,
-    type: 'md' | 'js'
+  name: string;
+  day_id: number;
+  publish_date: string;
+  content: string;
+  type: "md" | "js";
 }
 
 type IListRes = IRes<ListItem[]>;
@@ -38,4 +38,35 @@ export const getProblemList = (
   }
 ): Promise<IListRes> => {
   return instance.get("/questions", { params });
+};
+
+export interface ICreateAnswerRes {
+  success: boolean;
+  errorMsg?: string;
+}
+
+export const createAnswer = (
+  dayId: string,
+  content: string
+): Promise<ICreateAnswerRes> => {
+  return instance.post(`/answer/${dayId}`, { content });
+};
+
+export interface Answer {
+  answer_id: number;
+  answer_content: string;
+  answer_date: Date | string;
+}
+
+export interface IGetAnswersRes {
+  success: boolean;
+  subject_name: string;
+  subject_content: string;
+  refer_answer: string;
+  errorMsg?: string;
+  data: Answer[];
+}
+
+export const getAnswers = (dayId: string): Promise<IGetAnswersRes> => {
+  return instance.get(`/answers/${dayId}`);
 };
