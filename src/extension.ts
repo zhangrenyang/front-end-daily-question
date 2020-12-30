@@ -8,15 +8,16 @@ export async function activate(
 ): Promise<void> {
   try {
     // -------- interview 相关 -------------
-    const interviewProvider = new Interview();
+    const interviewProvider = new Interview(context);
     window.createTreeView("interview", {
       treeDataProvider: interviewProvider,
     });
     commands.registerCommand("interview.openQuestion", (ele) => {
       openQuestion(ele);
     });
-    commands.registerCommand("interview.refresh", (name, index) => {
-      vscode.window.showInformationMessage("刷新数据");
+    commands.registerCommand("interview.refresh", () => {
+      interviewProvider.refresh();
+      vscode.window.showInformationMessage("刷新");
     });
     commands.registerCommand("interview.openAnswer", (name, index) => {
       vscode.window.showInformationMessage("查看答案");

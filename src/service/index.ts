@@ -22,12 +22,11 @@ interface IListQuery {
 }
 
 export interface ListItem {
-	name: string;
-	id: number;
-	// eslint-disable-next-line @typescript-eslint/naming-convention
-	publish_date: Date | string;
-	content: string;
-	type: "md" | "js";
+  name: string,
+  day_id: number,
+  publish_date: string,
+  content: string,
+  type: 'md' | 'js'
 }
 
 type IListRes = IRes<ListItem[]>;

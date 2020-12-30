@@ -1,28 +1,26 @@
 import { resolve } from "path";
 import * as fse from "fs-extra";
-import client from "../mock";
 import { selectWorkspaceFolder } from "../shared/selectWorkspaceFolder";
 import { Uri, ViewColumn, window } from "vscode";
 import { ListItem } from "../service";
 import { filterInvalidPath } from "../shared";
 
 export async function openQuestion(ele: ListItem): Promise<void> {
-	const { name, type, content } = ele;
-
-	const workspaceFolder: string = await selectWorkspaceFolder();
-	if (!workspaceFolder) {
-		return;
-	}
-	const codeTemplate = getCodeTemplate(type, content);
-	const finalPath = await showProblem(
-		resolve(workspaceFolder, filterInvalidPath(name) + "." + type),
-		codeTemplate || ""
-	);
-	await window.showTextDocument(Uri.file(finalPath), {
-		preview: false,
-		viewColumn: ViewColumn.One,
-	});
-	return;
+  const { name, type, content, day_id } = ele;
+  const workspaceFolder: string = await selectWorkspaceFolder();
+  if (!workspaceFolder) {
+    return;
+  }
+  const codeTemplate = getCodeTemplate(type, content);
+  const finalPath = await showProblem(
+    resolve(workspaceFolder, day_id + "." + filterInvalidPath(name) + "." + type),
+    codeTemplate || ""
+  );
+  await window.showTextDocument(Uri.file(finalPath), {
+    preview: false,
+    viewColumn: ViewColumn.One,
+  });
+  return;
 }
 
 async function showProblem(filePath: string, codeTemplate: string) {
