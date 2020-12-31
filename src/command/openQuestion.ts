@@ -3,6 +3,7 @@ import * as fse from "fs-extra";
 import { selectWorkspaceFolder } from "../shared/selectWorkspaceFolder";
 import { Uri, ViewColumn, window } from "vscode";
 import { ListItem } from "../service";
+import { filterInvalidPath } from "../shared";
 
 export async function openQuestion(ele: ListItem): Promise<void> {
   const { name, type, content, day_id } = ele;
@@ -12,7 +13,7 @@ export async function openQuestion(ele: ListItem): Promise<void> {
   }
   const codeTemplate = getCodeTemplate(type, content);
   const finalPath = await showProblem(
-    resolve(workspaceFolder, day_id + "." + name.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '') + "." + type),
+    resolve(workspaceFolder, day_id + "." + filterInvalidPath(name) + "." + type),
     codeTemplate || ""
   );
   await window.showTextDocument(Uri.file(finalPath), {
@@ -23,11 +24,11 @@ export async function openQuestion(ele: ListItem): Promise<void> {
 }
 
 async function showProblem(filePath: string, codeTemplate: string) {
-  if (!(await fse.pathExists(filePath))) {
-    await fse.createFile(filePath);
-    await fse.writeFile(filePath, codeTemplate);
-  }
-  return filePath;
+	if (!(await fse.pathExists(filePath))) {
+		await fse.createFile(filePath);
+		await fse.writeFile(filePath, codeTemplate);
+	}
+	return filePath;
 }
 
 // async function getCodeTemplate(index: number) {
@@ -41,18 +42,18 @@ async function showProblem(filePath: string, codeTemplate: string) {
 // }
 
 function getCodeTemplate(type: "md" | "js", content: string) {
-  if (type === "md") {
-    return `# Problem: ${content}
+	if (type === "md") {
+		return `# Problem: ${content}
 
 *[interview]: start
 
 *[interview]: end
 `;
-  } else {
-    return `// Problem: ${content}
+	} else {
+		return `// Problem: ${content}
 // @interview start
 
 // @interview start
 `;
-  }
+	}
 }
