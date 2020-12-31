@@ -58,6 +58,7 @@ export class AnswersWebview extends AbstractWebview {
                     font-size: 85%;
                     line-height: 1.45;
                     background-color: #f6f8fa;
+                    color: #000;
                     border-radius: 3px; 
                 }
                 blockquote {

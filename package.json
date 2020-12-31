@@ -2,7 +2,7 @@
   "name": "front-end-daily-question",
   "displayName": "前端每日一题",
   "description": "A vscode extension for frontEnd Interviewer",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "everest-architecture",
   "engines": {
     "vscode": "^1.49.0"
@@ -51,7 +51,7 @@
     "viewsWelcome": [
       {
         "view": "interview",
-        "contents": "hello world"
+        "contents": "loading..."
       }
     ],
     "commands": [
