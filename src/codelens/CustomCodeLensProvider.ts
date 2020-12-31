@@ -46,7 +46,7 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
       new vscode.CodeLens(range, {
         title: "提交答案",
         command: "interview.postAnswer",
-        arguments: [document],
+        arguments: [document, content],
       })
     );
 
