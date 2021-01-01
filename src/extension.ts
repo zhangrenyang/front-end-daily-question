@@ -24,6 +24,9 @@ export async function activate(
     commands.registerCommand("interview.openAnswer", (doc) => {
       openAnswer(doc);
     });
+    commands.registerCommand("interview.openAnswerByInline", (node) => {
+      openAnswer(Object.assign({}, node, { fileName: node.label }));
+    });
     commands.registerCommand("interview.postAnswer", (doc, content) => {
       postAnswer(doc, content);
     });

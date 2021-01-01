@@ -2,7 +2,7 @@
   "name": "front-end-daily-question",
   "displayName": "前端每日一题",
   "description": "A vscode extension for frontEnd Interviewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "everest-architecture",
   "engines": {
     "vscode": "^1.49.0"
@@ -25,8 +25,8 @@
       ],
       "view/item/context": [
         {
-          "command": "interview.openAnswer",
-          "when": "view == interview",
+          "command": "interview.openAnswerByInline",
+          "when": "view == interview",          
           "group": "inline"
         }
       ]
@@ -64,7 +64,7 @@
         }
       },
       {
-        "command": "interview.openAnswer",
+        "command": "interview.openAnswerByInline",
         "title": "题解"
       }
     ],
