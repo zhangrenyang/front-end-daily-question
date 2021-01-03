@@ -23,16 +23,16 @@ export async function activate(
       vscode.window.showInformationMessage("刷新");
     });
     commands.registerCommand("interview.openAnswer", (doc) => {
-      openAnswer(doc);
+      openAnswer(doc,context);
     });
     commands.registerCommand("interview.openAnswerByInline", (node) => {
-      openAnswer(Object.assign({}, node, { fileName: node.label }));
+      openAnswer(Object.assign({}, node, { fileName: node.label }),context);
     });
     commands.registerCommand("interview.postAnswer", (doc, content) => {
-      postAnswer(doc, content);
+      postAnswer(doc, content, context);
     });
     commands.registerCommand("zffe.login", () => {
-      login();
+      login(context);
     });
     context.subscriptions.push(codeLensController);
     // -------- interview 相关 -------------

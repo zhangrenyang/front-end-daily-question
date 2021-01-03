@@ -2,7 +2,13 @@ import * as vscode from "vscode";
 import { createAnswer } from "../service";
 import { getDayId } from "../utils/getDayId";
 
-export function postAnswer(document: vscode.TextDocument, content: string) {
+export function postAnswer(document: vscode.TextDocument, content: string, context: vscode.ExtensionContext) {
+
+  if (!context.globalState.get('login', false)) {
+    vscode.window.showWarningMessage("请先登录");
+    return
+  }
+
   const { fileName } = document;
   const dayId = getDayId(fileName);
   if (!+dayId) {

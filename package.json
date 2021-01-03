@@ -74,7 +74,7 @@
       },
       {
         "command": "zffe.login",
-        "title": "github登录",
+        "title": "登录",
         "icon": {
           "light": "media/light/login.svg",
           "dark": "media/dark/login.svg"
