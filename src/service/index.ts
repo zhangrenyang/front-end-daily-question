@@ -1,7 +1,9 @@
 import axios from "axios";
 import { Interface } from "readline";
-const baseURL = "http://daily.zhufengpeixun.com/api";
-const instance = axios.create({
+const baseURL = "http://daily.zhufengpeixun.com";
+// const baseURL = "http://127.0.0.1:3021";
+
+export const instance = axios.create({
 	baseURL,
 });
 
@@ -37,7 +39,7 @@ export const getProblemList = (
 		pageSize: 9999,
 	}
 ): Promise<IListRes> => {
-	return instance.get("/questions", { params });
+  return instance.get("/api/questions", { params });
 };
 
 export interface ICreateAnswerRes {
@@ -49,7 +51,7 @@ export const createAnswer = (
   dayId: string,
   content: string
 ): Promise<ICreateAnswerRes> => {
-  return instance.post(`/answer/${dayId}`, { content });
+  return instance.post(`/api/answer/${dayId}`, { content });
 };
 
 export interface Answer {
@@ -67,6 +69,6 @@ export interface IGetAnswersRes {
   data: Answer[];
 }
 
-export const getAnswers = (dayId: string): Promise<IGetAnswersRes> => {
-  return instance.get(`/answers/${dayId}`);
+export const getAnswers = (dayId: string, gitid:number): Promise<IGetAnswersRes> => {
+  return instance.get(`/api/answers/${dayId}`, {params: {gitid}});
 };

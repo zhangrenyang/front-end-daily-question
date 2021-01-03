@@ -18,6 +18,11 @@
     "menus": {
       "view/title": [
         {
+          "command": "zffe.login",
+          "when": "view == interview",
+          "group": "navigation"
+        },
+        {
           "command": "interview.refresh",
           "when": "view == interview",
           "group": "navigation"
@@ -66,6 +71,14 @@
       {
         "command": "interview.openAnswerByInline",
         "title": "题解"
+      },
+      {
+        "command": "zffe.login",
+        "title": "github登录",
+        "icon": {
+          "light": "media/light/login.svg",
+          "dark": "media/dark/login.svg"
+        }
       }
     ],
     "configuration": [

@@ -5,6 +5,7 @@ import { openQuestion } from "./command/openQuestion";
 import { openAnswer } from "./command/openAnswer";
 import { postAnswer } from "./command/postAnswer";
 import { Interview } from "./treeview/interviewTreeView";
+import { login } from "./command/login";
 export async function activate(
   context: vscode.ExtensionContext
 ): Promise<void> {
@@ -29,6 +30,9 @@ export async function activate(
     });
     commands.registerCommand("interview.postAnswer", (doc, content) => {
       postAnswer(doc, content);
+    });
+    commands.registerCommand("zffe.login", () => {
+      login();
     });
     context.subscriptions.push(codeLensController);
     // -------- interview 相关 -------------
