@@ -1,8 +1,8 @@
 import axios from "axios";
-const baseURL =
-	process.env.NODE_ENV === "development"
-		? "http://dailytest.zhufengpeixun.com"
-		: "http://daily.zhufengpeixun.com";
+import { Interface } from "readline";
+const baseURL = "http://daily.zhufengpeixun.com";
+// const baseURL = "http://127.0.0.1:3021";
+
 export const instance = axios.create({
 	baseURL,
 });
@@ -24,11 +24,11 @@ interface IListQuery {
 }
 
 export interface ListItem {
-	name: string;
-	day_id: number;
-	publish_date: string;
-	content: string;
-	type: "md" | "js";
+  name: string;
+  day_id: number;
+  publish_date: string;
+  content: string;
+  type: "md" | "js";
 }
 
 type IListRes = IRes<ListItem[]>;
@@ -39,60 +39,37 @@ export const getProblemList = (
 		pageSize: 9999,
 	}
 ): Promise<IListRes> => {
-	return instance.get("/api/questions", { params });
+  return instance.get("/api/questions", { params });
 };
 
 export interface ICreateAnswerRes {
-	success: boolean;
-	errorMsg?: string;
+  success: boolean;
+  errorMsg?: string;
 }
 
 export const createAnswer = (
-	dayId: string,
-	content: string
+  dayId: string,
+  content: string,
+  gitId: number
 ): Promise<ICreateAnswerRes> => {
-	return instance.post(`/api/answer/${dayId}`, { content });
+  return instance.post(`/api/answer/${dayId}`, { content, gitId });
 };
 
 export interface Answer {
-	answer_id: number;
-	answer_content: string;
-	answer_date: Date | string;
+  answer_id: number;
+  answer_content: string;
+  answer_date: Date | string;
 }
 
 export interface IGetAnswersRes {
-	success: boolean;
-	subject_name: string;
-	subject_content: string;
-	refer_answer: string;
-	errorMsg?: string;
-	data: Answer[];
+  success: boolean;
+  subject_name: string;
+  subject_content: string;
+  refer_answer: string;
+  errorMsg?: string;
+  data: Answer[];
 }
 
-export const getAnswers = (
-	dayId: string,
-	gitid: number
-): Promise<IGetAnswersRes> => {
-	return instance.get(`/api/answers/${dayId}`, { params: { gitid } });
-};
-
-export interface IGithubDataRes {
-	id: number;
-}
-
-export const getGithubAccount = (accessToken: string) => {
-	return axios.get<IGithubDataRes>(`https://api.github.com/user`, {
-		headers: {
-			accept: "application/json",
-			Authorization: `token ${accessToken}`,
-		},
-	});
-};
-
-export interface IIsStudentRes {
-	isStudent: boolean;
-}
-
-export const isStudent = (data: IGithubDataRes): Promise<IIsStudentRes> => {
-	return instance.post(`/github/searchStudent`, { data });
+export const getAnswers = (dayId: string, gitId:number): Promise<IGetAnswersRes> => {
+  return instance.get(`/api/answers/${dayId}`, {params: {gitId}});
 };
