@@ -37,7 +37,7 @@ export async function postAnswer(document: vscode.TextDocument, content: string,
 }
 
 function pickUserAnswer(content: string): string {
-  const regex = /\*\[interview\]: start(.*?)\*\[interview\]: end/s;
-  const [, answer = ""] = regex.exec(content) || [];
-  return answer.trim();
+	const regex = /\*\[interview\]: start(.*?)\*\[interview\]: end/s;
+	const [, answer = ""] = regex.exec(content) || [];
+	return answer.trim();
 }
