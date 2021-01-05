@@ -6,6 +6,7 @@ import { openAnswer } from "./command/openAnswer";
 import { postAnswer } from "./command/postAnswer";
 import { Interview } from "./treeview/interviewTreeView";
 import { login } from "./command/login";
+import { SidebarProvider } from "./webview/EnglishSiderBarWebview";
 export async function activate(
 	context: vscode.ExtensionContext
 ): Promise<void> {
@@ -36,6 +37,12 @@ export async function activate(
 		});
 		context.subscriptions.push(codeLensController);
 		// -------- interview 相关 -------------
+		// -------- English 相关 -----------
+		const sidebarProvider = new SidebarProvider(context.extensionUri);
+		context.subscriptions.push(
+			vscode.window.registerWebviewViewProvider("dailyEnglish", sidebarProvider)
+		);
+		// -------- English 相关 -----------
 	} catch (error) {
 		window.showInformationMessage(error);
 	}

@@ -45,6 +45,12 @@
 				{
 					"id": "interview",
 					"name": "前端每日一题"
+				},
+				{
+					"id": "dailyEnglish",
+					"type": "webview",
+					"name": "每日英语",
+					"contextualTitle": "每日英语"
 				}
 			]
 		},
