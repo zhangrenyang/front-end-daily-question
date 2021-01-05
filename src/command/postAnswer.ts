@@ -2,12 +2,14 @@ import * as vscode from "vscode";
 import { createAnswer } from "../service";
 import { getDayId } from "../utils/getDayId";
 
-export function postAnswer(document: vscode.TextDocument, content: string, context: vscode.ExtensionContext) {
+export async function postAnswer(document: vscode.TextDocument, content: string, context: vscode.ExtensionContext) {
 
   if (!context.globalState.get('login', false)) {
     vscode.window.showWarningMessage("请先登录");
     return
   }
+
+  const { account } = await vscode.authentication.getSession('github', ['user:email'], { createIfNone: true });
 
   const { fileName } = document;
   const dayId = getDayId(fileName);
@@ -20,7 +22,7 @@ export function postAnswer(document: vscode.TextDocument, content: string, conte
     vscode.window.showErrorMessage("答案不能为空");
     return;
   }
-  createAnswer(dayId, answer)
+  createAnswer(dayId, answer, Number(account.id))
     .then((res) => {
       if (res.success) {
         vscode.window.showInformationMessage("提交成功");

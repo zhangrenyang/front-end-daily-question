@@ -10,13 +10,8 @@ export class AnswersWebview extends AbstractWebview {
     super();
   }
 
-  public async init() {
-    const { account } = await vscode.authentication.getSession('github', ['user:email'], { createIfNone: true });
-    if (!account) {
-      vscode.window.showWarningMessage("请点击登录按钮并按提示操作");
-      return
-    }
-    this.answersRes = await getAnswers(this.dayId, Number(account.id));
+  public async init(gitId:number) {
+    this.answersRes = await getAnswers(this.dayId, gitId);
   }
 
   public show(): void {

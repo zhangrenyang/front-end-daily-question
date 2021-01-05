@@ -49,9 +49,10 @@ export interface ICreateAnswerRes {
 
 export const createAnswer = (
   dayId: string,
-  content: string
+  content: string,
+  gitId: number
 ): Promise<ICreateAnswerRes> => {
-  return instance.post(`/api/answer/${dayId}`, { content });
+  return instance.post(`/api/answer/${dayId}`, { content, gitId });
 };
 
 export interface Answer {
@@ -69,6 +70,6 @@ export interface IGetAnswersRes {
   data: Answer[];
 }
 
-export const getAnswers = (dayId: string, gitid:number): Promise<IGetAnswersRes> => {
-  return instance.get(`/api/answers/${dayId}`, {params: {gitid}});
+export const getAnswers = (dayId: string, gitId:number): Promise<IGetAnswersRes> => {
+  return instance.get(`/api/answers/${dayId}`, {params: {gitId}});
 };
