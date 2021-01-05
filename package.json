@@ -11,6 +11,7 @@
 		"type": "git",
 		"url": "https://github.com/everest-architecture/front-end-daily-question"
 	},
+	"icon": "media/logo.jpeg",
 	"categories": [
 		"Other"
 	],
