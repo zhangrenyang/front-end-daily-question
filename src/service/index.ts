@@ -1,6 +1,7 @@
 import axios from "axios";
-import { config } from "process";
 const baseURL = "http://daily.zhufengpeixun.com";
+// const baseURL = "http://dailytest.zhufengpeixun.com";
+// const baseURL = "http://127.0.0.1:3021";
 
 export const instance = axios.create({
 	baseURL,

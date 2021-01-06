@@ -29,6 +29,12 @@ export class Interview implements TreeDataProvider<Question> {
 	}
 
 	async getQuestions() {
+	// const a = new Question(`111`, '111', {
+    //   command: "interview.openQuestion",
+    //   title: "",
+    //   arguments: [{ name: '1', type: 'md', content: '123', day_id: 1 }],
+    // })
+    // return [a]
 		try {
 			let result = await getProblemList();
 			let arr = result.data.map(
