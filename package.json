@@ -15,6 +15,7 @@
 	"categories": [
 		"Other"
 	],
+	"license": "MIT",
 	"activationEvents": [
 		"onView:interview"
 	],

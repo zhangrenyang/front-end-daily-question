@@ -15,6 +15,7 @@
 - 接口文档 https://github.com/everest-architecture/front-end-daily-question/blob/main/packages/requirements/API.md
 - 项目看板，可以在上面领任务 https://github.com/everest-architecture/front-end-daily-question/projects/1
 - fork 下来，完成你的需求，提交 Pull Request，就可以提交了参与贡献了！
+- 目前已经加入了 git husky ，提交请符合 [commit 规范](https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)
 
 ## Features
 
