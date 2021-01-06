@@ -16,16 +16,21 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
 			enableScripts: true,
 
 			localResourceRoots: [this._extensionUri],
-        };
-        try {
-            const res = await getDailyEnglish();
-            console.log(res)
-            webviewView.webview.html = this._getHtmlForWebview(webviewView.webview, res);
-        } catch (error) {
-            return;
-        }
+		};
+		try {
+			const res = await getDailyEnglish();
+			webviewView.webview.html = this._getHtmlForWebview(
+				webviewView.webview,
+				res
+			);
+		} catch (error) {
+			return;
+		}
 	}
-	private _getHtmlForWebview(webview: vscode.Webview, res: AxiosResponse<IEnglishDailyRes>) {
+	private _getHtmlForWebview(
+		webview: vscode.Webview,
+		res: AxiosResponse<IEnglishDailyRes>
+	) {
 		return `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -36,11 +41,13 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
             <h3>${res.data.sentenceViewList[0]?.dailysentence?.content}</h3>
             <h3>${res.data.sentenceViewList[0]?.dailysentence?.note}</h3>
             <h2>每日单词🌟</h2>
-            ${res.data.sentenceViewList[0]?.sentenceLecture?.lectureConfigList[0]?.paraphraseList?.map(ele => {
-                return `<h3>${ele.sentence} ${ele.symbol}</h3>
+            ${res.data.sentenceViewList[0]?.sentenceLecture?.lectureConfigList[0]?.paraphraseList
+							?.map((ele) => {
+								return `<h3>${ele.sentence} ${ele.symbol}</h3>
                 <h3>${ele.paraphrase}</h3>
-                `
-            }).join('\n----------')}
+                `;
+							})
+							.join("\n----------")}
         </body>
         </html>`;
 	}
