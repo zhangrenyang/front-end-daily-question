@@ -42,7 +42,7 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
 
 		codeLens.push(
 			new vscode.CodeLens(range, {
-				title: "提交答案",
+				title: "☑️提交答案",
 				command: "interview.postAnswer",
 				arguments: [document, content],
 			})
@@ -50,7 +50,7 @@ export class CustomCodeLensProvider implements vscode.CodeLensProvider {
 
 		codeLens.push(
 			new vscode.CodeLens(range, {
-				title: "查看题解",
+				title: "👀查看题解",
 				command: "interview.openAnswer",
 				arguments: [document],
 			})
