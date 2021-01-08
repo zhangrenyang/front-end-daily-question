@@ -7,12 +7,23 @@ export const instance = axios.create({
 	baseURL,
 });
 
-instance.interceptors.response.use((response) => {
-	if (response.status >= 200 && response.status < 300) {
-		return response.data ? response.data : {};
-	}
-	return {};
+instance.interceptors.request.use((value) => {
+	console.log("请求参数", value);
+	return value;
 });
+
+instance.interceptors.response.use(
+	(response) => {
+		if (response.status >= 200 && response.status < 300) {
+			return response.data ? response.data : {};
+		}
+		console.log(response.status);
+		return {};
+	},
+	(err) => {
+		console.log("报错", err);
+	}
+);
 
 interface IRes<T> {
 	data: T;
