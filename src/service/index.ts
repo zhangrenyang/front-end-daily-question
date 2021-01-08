@@ -1,4 +1,5 @@
 import axios from "axios";
+import { window } from "vscode";
 const baseURL = "http://daily.zhufengpeixun.com";
 // const baseURL = "http://dailytest.zhufengpeixun.com";
 // const baseURL = "http://127.0.0.1:3021";
@@ -22,6 +23,7 @@ instance.interceptors.response.use(
 	},
 	(err) => {
 		console.log("报错", err);
+		window.showErrorMessage(err);
 	}
 );
 
