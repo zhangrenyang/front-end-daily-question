@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.0.1 (2021-01-08)
+
+### Bug Fixes
+
+- 解决冲突 ([8d00711](https://github.com/everest-architecture/front-end-daily-question/commit/8d007115f0629b81988a17ad5ca3b2ecc993bb3e))
+
+### Features
+
+- extract request ; add eslint prettier cz ([332646a](https://github.com/everest-architecture/front-end-daily-question/commit/332646a185183e5def93834c6d5e4694c043e8ad))
+- 提交自己答案后才能查看题解 ([8355a2a](https://github.com/everest-architecture/front-end-daily-question/commit/e55d31460a4b8650d638deba9e0a65fe0cc5bbd5))
+- 插件市场头像 ([d828b35](https://github.com/everest-architecture/front-end-daily-question/commit/d828b3521354617f9bb8eb64833b8720644e0bd4))
+- 每日英语功能上线 ([ea36047](https://github.com/everest-architecture/front-end-daily-question/commit/ea36047299394330d841e762e5cce425eb04a186))
+
 ## 1.0.0 (2020-12-31)
 
 ### Bug Fixes
