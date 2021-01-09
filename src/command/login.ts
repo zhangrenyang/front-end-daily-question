@@ -31,32 +31,26 @@ export async function login(context: vscode.ExtensionContext): Promise<void> {
 			isStudent: boolean;
 		} = await instance.post(`/github/searchStudent`, { data });
 
-		if (res.isStudent) {
-			// 正式学员 webview要带token
+		vscode.window.showInformationMessage(`恭喜你登录成功`);
 
-			vscode.window.showInformationMessage(`VIP学员，欢迎 🌹🌹🌹`);
-		} else {
-			vscode.window.showInformationMessage(`您已登录，需绑定为正式学员`);
-
-			// const resmsg = await vscode.window.showInformationMessage('请绑定正式学员账户', '绑定', '没有账户')
-			// if (resmsg === '没有账户') {
-			//     vscode.env.openExternal(vscode.Uri.parse('http://www.zhufengpeixun.cn/'));
-			// }
-			// if (resmsg === '绑定') {
-			//     const stuNum: string | undefined = await vscode.window.showInputBox({
-			//         prompt: "请输入学号",
-			//         ignoreFocusOut: true,
-			//         validateInput: (s: string): string | undefined => s && s.trim() ? undefined : "学号不能为空",
-			//     });
-			//     const pwd: string | undefined = await vscode.window.showInputBox({
-			//         prompt: "请输入密码(初始密码是后四位)",
-			//         password: true,
-			//         ignoreFocusOut: true,
-			//         validateInput: (s: string): string | undefined => s ? undefined : "密码不能为空",
-			//     });
-			//     instance.post(`/github/bindingStudent`, { stuNum,pwd });
-			// }
-		}
+		// const resmsg = await vscode.window.showInformationMessage('请绑定正式学员账户', '绑定', '没有账户')
+		// if (resmsg === '没有账户') {
+		//     vscode.env.openExternal(vscode.Uri.parse('http://www.zhufengpeixun.cn/'));
+		// }
+		// if (resmsg === '绑定') {
+		//     const stuNum: string | undefined = await vscode.window.showInputBox({
+		//         prompt: "请输入学号",
+		//         ignoreFocusOut: true,
+		//         validateInput: (s: string): string | undefined => s && s.trim() ? undefined : "学号不能为空",
+		//     });
+		//     const pwd: string | undefined = await vscode.window.showInputBox({
+		//         prompt: "请输入密码(初始密码是后四位)",
+		//         password: true,
+		//         ignoreFocusOut: true,
+		//         validateInput: (s: string): string | undefined => s ? undefined : "密码不能为空",
+		//     });
+		//     instance.post(`/github/bindingStudent`, { stuNum,pwd });
+		// }
 	} catch (e) {
 		console.log(e);
 	}

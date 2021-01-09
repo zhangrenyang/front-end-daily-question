@@ -74,11 +74,7 @@
 		"commands": [
 			{
 				"command": "interview.refresh",
-				"title": "Refresh",
-				"icon": {
-					"light": "media/light/refresh.svg",
-					"dark": "media/dark/refresh.svg"
-				}
+				"title": "刷新"
 			},
 			{
 				"command": "interview.openAnswerByInline",
