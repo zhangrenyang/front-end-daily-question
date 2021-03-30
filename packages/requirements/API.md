@@ -14,6 +14,7 @@ GET / api / questions;
 | :------- | :--- | :------- |
 | current  | 整数 | 当前页数 |
 | pageSize | 整数 | 每页条数 |
+| gitId | 字符串 | git用户ID |
 
 ### 返回值
 
@@ -31,11 +32,12 @@ GET / api / questions;
 
 | 变量名       | 类型   | 说明                          |
 | :----------- | :----- | :---------------------------- |
-| id           | 整数   | 每日一题 ID                   |
+| day_id           | 整数   | 每日一题 ID                   |
 | name         | 字符串 | 题目名称                      |
 | type         | 字符串 | 题目类型，目前有两种,md 和 js |
 | content      | 字符串 | 题目内容                      |
-| publish_date | 日期   | 发布时间                      |
+| publish_date | 日期   | 发布时间                      
+| answered | 布尔值   | 本人是否已经回答过了                      |
 
 示例
 
@@ -47,9 +49,10 @@ GET / api / questions;
 	"total": 10,
 	"data": [
 		{
-			"id": 1,
+			"day_id": 1,
 			"name": "请说一下什么是虚拟DOM?",
-			"publish_date": "2020-12-22"
+			"publish_date": "2020-12-22",
+			"answered":true
 		}
 	]
 }
